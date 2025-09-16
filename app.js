@@ -7,7 +7,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/',(req,res)=>{
-    res.send("this is home page")
+    res.send("this is Supreme")
 });
 
 app.listen(3000,()=>{
