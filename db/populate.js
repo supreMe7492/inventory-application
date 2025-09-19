@@ -3,7 +3,7 @@ const {Client} = require('pg');
 
 const SQL = `
                  CREATE TABLE IF NOT EXISTS poisions (
-                 id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+                 poision_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                  name VARCHAR (255),
                  toxin_type VARCHAR (255),
                  lethality_level VARCHAR (255),
@@ -16,7 +16,7 @@ const SQL = `
                 ('Lead Powder','Mineral','Medium','/images/lead_powder.png');
 
               CREATE TABLE IF NOT EXISTS symptoms (
-              id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+              symptom_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
               symptom_name VARCHAR(255)     
                 );
 
@@ -34,8 +34,8 @@ const SQL = `
                poision_id INTEGER,
                symptom_id INTEGER,
                PRIMARY KEY (poision_id,symptom_id),
-               FOREIGN KEY (poision_id) REFERENCES  poisions(id) ON DELETE CASCADE,
-               FOREIGN KEY (symptom_id) REFERENCES  symptoms(id) ON DELETE CASCADE
+               FOREIGN KEY (poision_id) REFERENCES  poisions(poision_id) ON DELETE CASCADE,
+               FOREIGN KEY (symptom_id) REFERENCES  symptoms(symptom_id) ON DELETE CASCADE
                );
              
 

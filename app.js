@@ -6,9 +6,8 @@ app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/',(req,res)=>{
-    res.send("this is Supreme")
-});
+const poisonDetails = require('./routes/poisionRoute')
+app.use('/',poisonDetails);
 
 app.listen(3000,()=>{
     console.log("check it out on the port 3000")
