@@ -9,6 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 const poisonDetails = require('./routes/poisionRoute')
 app.use('/',poisonDetails);
 
+const updateDetail = require('./routes/updateDetails')
+
+app.use('/edit',updateDetail)
 app.listen(3000,()=>{
     console.log("check it out on the port 3000")
 })

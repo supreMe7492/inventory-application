@@ -6,10 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/edit/:poision_id" method="post">
+    <form action="/edit/<%=poision.poision_id%>" method="post">
         <input type="text" name="poisionName" id="poision" value="<%=poision.poisionName%>">
         <input type="text" name="toxin_type" id="toxin" value="<%=poision.toxin_type%>">
-        <input type="text" name="lethality_level" id="lethality" value="<%=poision.lethality_level%>">
+     <select id="lethality_level" name="lethality_level">
+         <option value="Deadly" <%= poision.lethality_level === "Deadly" ? "selected" : "" %>>Deadly</option>
+         <option value="High" <%= poision.lethality_level === "High" ? "selected" : "" %>>High</option>
+         <option value="Medium" <%= poision.lethality_level === "Medium" ? "selected" : "" %>>Medium</option>
+         <option value="Medium" <%= poision.lethality_level === "Low" ? "selected" : "" %>>Low</option>
+
+   </select>        
+<button type="submit">Save Changes</button>
     </form>
 </body>
 </html>

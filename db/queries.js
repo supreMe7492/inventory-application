@@ -39,4 +39,26 @@ async function getPoisionDetail(poision_id){
     return organizedRows;
 }
 
- module.exports = {allPoisions,getPoisionDetail}
+
+function updatePoisionDetail(poision_id){
+  async function updatePoisionName(poision_name){
+    const {rows} = await pool.query(`SELECT poisions.poision_id FROM poisions WHERE poisions.name = $1`,[poision_name]);
+    if(rows.length === 0 || rows[0].poision_id == poision_id){
+    await pool.query(`UPDATE poisions SET name = $1 WHERE poision_id =$2`,[poision_name,poision_id]);
+    }else{
+      throw new Error('already exists u bitch ass')
+    }
+  }
+
+  async function updatePoisionType(toxin_type){
+        await pool.query(`UPDATE poisions SET toxin_type = $1 WHERE poision_id =$2`,[toxin_type,poision_id]);
+
+  }
+
+  async function updateLethality(lethality_level){
+            await pool.query(`UPDATE poisions SET lethality_level = $1 WHERE poision_id =$2`,[lethality_level,poision_id]);
+  }
+  return {updatePoisionName,updatePoisionType,updateLethality}
+}
+
+ module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail}  

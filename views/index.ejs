@@ -7,13 +7,13 @@
     <title>poisions-inventory</title>
 </head>
 <body>
-    <% poisons.forEach(poison => { %>
-  <div class="poison-card">
-    <h2><%= poison.poisionName %></h2>
-    <p><strong>Toxin Type:</strong> <%= poison.toxin_type %></p>
-    <p><strong>Lethality Level:</strong> <%= poison.lethality_level %></p>
-    <p><strong>Symptoms:</strong> <%= poison.symptoms.map(s => s.symptom_name).join(', ') %></p>    
-    <a href="/edit/<%=poison.id%>" class="edit-btn">Edit</a>
+    <% poisions.forEach(poision => { %>
+  <div class="poision-card">
+    <h2><%= poision.poisionName %></h2>
+    <p><strong>Toxin Type:</strong> <%= poision.toxin_type %></p>
+    <p><strong>Lethality Level:</strong> <%= poision.lethality_level %></p>
+    <p><strong>Symptoms:</strong> <%= poision.symptoms.map(s => s.symptom_name).join(', ') %></p>    
+    <a href="/edit/<%=poision.poision_id%>" class="edit-btn">Edit</a>
     <button class="delete-btn">Delete</button>
   </div>
 <% }) %>
