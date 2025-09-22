@@ -39,7 +39,6 @@ async function getPoisionDetail(poision_id){
     return organizedRows;
 }
 
-
 function updatePoisionDetail(poision_id){
   async function updatePoisionName(poision_name){
     const {rows} = await pool.query(`SELECT poisions.poision_id FROM poisions WHERE poisions.name = $1`,[poision_name]);
@@ -58,7 +57,22 @@ function updatePoisionDetail(poision_id){
   async function updateLethality(lethality_level){
             await pool.query(`UPDATE poisions SET lethality_level = $1 WHERE poision_id =$2`,[lethality_level,poision_id]);
   }
-  return {updatePoisionName,updatePoisionType,updateLethality}
+
+  async function updateSymptoms(poision_id,symptom_ids){
+     await pool.query(`DELETE FROM poision_symptoms WHERE poision_id = $1`, [poision_id]);
+       if (!Array.isArray(symptom_ids)) {
+    symptom_ids = [symptom_ids];
+  }
+ for (const symptom_id of symptom_ids) {
+    await pool.query(`INSERT INTO poision_symptoms(poision_id,symptom_id) VALUES ($1,$2)`, [poision_id, symptom_id]);
+  }
+  }  
+  return {updatePoisionName,updatePoisionType,updateLethality,updateSymptoms}
 }
 
- module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail}  
+async function allSymptoms(){
+  const {rows} = await pool.query(`SELECT * FROM symptoms`);
+  return rows;
+}
+
+ module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail, allSymptoms}  
