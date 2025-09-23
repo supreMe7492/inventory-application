@@ -58,15 +58,12 @@ function updatePoisionDetail(poision_id){
             await pool.query(`UPDATE poisions SET lethality_level = $1 WHERE poision_id =$2`,[lethality_level,poision_id]);
   }
 
-  async function updateSymptoms(poision_id,symptom_ids){
-     await pool.query(`DELETE FROM poision_symptoms WHERE poision_id = $1`, [poision_id]);
-       if (!Array.isArray(symptom_ids)) {
-    symptom_ids = [symptom_ids];
-  }
- for (const symptom_id of symptom_ids) {
-    await pool.query(`INSERT INTO poision_symptoms(poision_id,symptom_id) VALUES ($1,$2)`, [poision_id, symptom_id]);
-  }
+  async function updateSymptoms(symptom_ids){
+   symptom_ids = normalizeSymptomId(symptom_ids);
+  await pool.query(`DELETE FROM poision_symptoms WHERE poision_id = $1`, [poision_id]);
+  addPoisionSymptoms(poision_id,symptom_ids);
   }  
+
   return {updatePoisionName,updatePoisionType,updateLethality,updateSymptoms}
 }
 
@@ -75,4 +72,34 @@ async function allSymptoms(){
   return rows;
 }
 
- module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail, allSymptoms}  
+function normalizeSymptomId(symptom_ids){
+  if(!symptom_ids){
+    throw new Error('at least one symptom is expected')
+  }
+  if(!Array.isArray(symptom_ids)){
+    symptom_ids = [symptom_ids];
+  }
+  return symptom_ids;
+}
+
+async function addPoisionSymptoms(poision_id,symptom_ids){
+  for (const symptom_id of symptom_ids) {
+    await pool.query(`INSERT INTO poision_symptoms(poision_id,symptom_id) VALUES ($1,$2)`, [poision_id, symptom_id]);
+  
+ }
+}
+async function checkPoision(poision_name){
+  const {rows} = await pool.query(`SELECT poisions.poision_id FROM poisions WHERE poisions.name = $1`,[poision_name]);
+  if(rows.length !== 0){
+    throw new Error('the poision already exists')
+  }
+}
+async function addPoision(poision_name,toxin_type,lethality_level,symptom_ids){
+  await checkPoision(poision_name);
+ const {rows} = await pool.query(`INSERT INTO poisions (name,toxin_type,lethality_level) VALUES ($1,$2,$3) RETURNING poision_id`,[poision_name,toxin_type,lethality_level]);
+ const poision_id = rows[0].poision_id;
+ console.log(poision_id);
+ symptom_ids = normalizeSymptomId(symptom_ids);
+ await addPoisionSymptoms(poision_id,symptom_ids);
+}
+ module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail, allSymptoms,addPoision}  

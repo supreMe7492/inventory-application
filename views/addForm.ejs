@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <form action="/add_poison" method="post">
+        <input type="text" name="poisionName" id="poision">
+        <input type="text" name="toxin_type" id="toxin">
+     <select id="lethality_level" name="lethality_level">
+         <option value="Deadly">Deadly</option>
+         <option value="High">High</option>
+         <option value="Medium">Medium</option>
+         <option value="Medium">Low</option>
+
+   </select>   
+        <% symptoms.forEach(symptom =>{ %>
+            <input type="checkbox" name="symptom" id="symptom_input" value="<%=symptom.symptom_id%>">
+                  <%=symptom.symptom_name%>
+
+        <% }) %>    
+   
+   
+<button type="submit">Add Poision</button>
+    </form>
+
+</body>
+</html>

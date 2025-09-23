@@ -1,4 +1,4 @@
-const {allPoisions,updatePoisionDetail,getPoisionDetail,allSymptoms} = require("../db/queries");
+const {allPoisions,updatePoisionDetail,getPoisionDetail,allSymptoms,addPoision} = require("../db/queries");
 
 async function renderAllPoision(req,res){
     const poisons = await allPoisions();
@@ -11,7 +11,7 @@ async function updateDetail (req,res){
     await updatePoision.updatePoisionName(req.body.poisionName);
     await updatePoision.updatePoisionType(req.body.toxin_type);
     await updatePoision.updateLethality(req.body.lethality_level);
-    await updatePoision.updateSymptoms(req.params.poision_id,req.body.symptom);
+    await updatePoision.updateSymptoms(req.body.symptom);
 
     res.redirect('/');
     }catch(err){
@@ -24,4 +24,24 @@ async function renderEditForm(req,res){
     const symptoms = await allSymptoms();
     res.render('editForm',{poision:poision[0],symptoms:symptoms})
 }
-module.exports = {renderAllPoision,updateDetail,renderEditForm}
+
+async function addPoisionForm(req,res){
+   const symptoms = await allSymptoms()
+   res.render('addForm',{symptoms:symptoms});
+}
+
+async function addNewPoision(req,res){
+    try{
+        await addPoision(
+            req.body.poisionName,
+            req.body.toxin_type,
+            req.body.lethality_level,
+            req.body.symptom
+        )
+
+      res.redirect('/')  
+    }catch(err){
+       res.send(err.message)
+    }
+}
+module.exports = {renderAllPoision,updateDetail,renderEditForm,addPoisionForm,addNewPoision}

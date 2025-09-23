@@ -6,14 +6,13 @@ const SQL = `
                  poision_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
                  name VARCHAR (255),
                  toxin_type VARCHAR (255),
-                 lethality_level VARCHAR (255),
-                 image_path VARCHAR(255)
-                              );
+                 lethality_level VARCHAR (255)
+                 );
                 
-                INSERT INTO poisions (name,toxin_type,lethality_level,image_path) VALUES
-                ('Nightshade','Plant','High','/images/nightshade.png'),
-                ('Snake Venom','Animal','Deadly','/images/snake_venom.png'),
-                ('Lead Powder','Mineral','Medium','/images/lead_powder.png');
+                INSERT INTO poisions (name,toxin_type,lethality_level) VALUES
+                ('Nightshade','Plant','High'),
+                ('Snake Venom','Animal','Deadly'),
+                ('Lead Powder','Mineral','Medium');
 
               CREATE TABLE IF NOT EXISTS symptoms (
               symptom_id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
