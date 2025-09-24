@@ -18,6 +18,10 @@ app.use('/add_poison',addPoision);
 
 const editSymptoms = require('./routes/editSymptoms');
 app.use('/edit_symptom',editSymptoms);
+
+const addSymptom = require('./routes/addSymptom');
+app.use('/add_symptom',addSymptom);
+
 app.listen(3000,()=>{
     console.log("check it out on the port 3000")
 })
