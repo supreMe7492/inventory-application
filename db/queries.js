@@ -107,4 +107,17 @@ async function deletePoision(poision_id){
   await pool.query(`DELETE FROM poisions WHERE poision_id = $1`,[poision_id]);
   await pool.query(`DELETE FROM poision_symptoms WHERE poision_id = $1`, [poision_id]);
 }
- module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail, allSymptoms,addPoision,deletePoision};  
+
+async function deleteSymptom(symptom_id){
+  await pool.query('DELETE FROM symptoms WHERE symptom_id = $1',[symptom_id]);
+  await pool.query('DELETE FROM poision_symptoms WHERE symptom_id = $1',[symptom_id]);
+}
+
+async function addSymptom(symptom_name){
+  const {rows} = await pool.query('SELECT * FROM symptoms WHERE symptom_name = $1',[symptom_name]);
+  if(rows.length !== 0){
+    throw new Error('this symptom already exists');
+  }
+  await pool.query('INSERT INTO symptoms(symptom_name) VALUES ($1)',[symptom_name]);
+}
+ module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail, allSymptoms,addPoision,deletePoision,deleteSymptom,addSymptom};  

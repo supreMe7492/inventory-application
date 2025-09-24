@@ -1,4 +1,4 @@
-const {allPoisions,updatePoisionDetail,getPoisionDetail,allSymptoms,addPoision,deletePoision} = require("../db/queries");
+const {allPoisions,updatePoisionDetail,getPoisionDetail,allSymptoms,addPoision,deletePoision,deleteSymptom} = require("../db/queries");
 
 async function renderAllPoision(req,res){
     const poisons = await allPoisions();
@@ -50,4 +50,14 @@ async function removePoision(req,res){
     res.redirect('/')
 }
 
-module.exports = {renderAllPoision,updateDetail,renderEditForm,addPoisionForm,addNewPoision,removePoision}
+async function renderSymptoms(req,res){
+    const symptoms = await allSymptoms();
+    res.render('editSymptom',{symptoms:symptoms});
+}
+
+async function removeSymptom(req,res){
+    await deleteSymptom(req.params.symptom_id);
+    res.redirect('/');              
+}
+
+module.exports = {renderAllPoision,updateDetail,renderEditForm,addPoisionForm,addNewPoision,removePoision,renderSymptoms,removeSymptom}

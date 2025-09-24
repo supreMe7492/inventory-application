@@ -14,7 +14,10 @@ const updateDetail = require('./routes/updateDetails')
 app.use('/edit',updateDetail)
 
 const addPoision = require('./routes/addPoision');
-app.use('/add_poison',addPoision)
+app.use('/add_poison',addPoision);
+
+const editSymptoms = require('./routes/editSymptoms');
+app.use('/edit_symptom',editSymptoms);
 app.listen(3000,()=>{
     console.log("check it out on the port 3000")
 })
