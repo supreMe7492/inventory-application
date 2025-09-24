@@ -1,0 +1,62 @@
+body {
+  background: #181a20;
+  color: #e0e0e0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+a, button {
+  color: #fff;
+  background: #282c34;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin: 4px;
+  transition: background 0.2s;
+}
+
+a:hover, button:hover {
+  background: #444950;
+}
+
+input, select {
+  background: #23272f;
+  color: #e0e0e0;
+  border: 1px solid #444950;
+  border-radius: 4px;
+  padding: 6px;
+  margin: 4px 0;
+}
+
+.poision-card {
+  background: #23272f;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #0004;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 400px;
+}
+
+.edit-btn, .delete-btn {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+form {
+  display: inline;
+}
+
+input[type="checkbox"] {
+  accent-color: #6c63ff;
+}
+
+h2, h1 {
+  color: #6c63ff;
+}
+
+::-webkit-input-placeholder { color: #888; }
+::-moz-placeholder { color: #888; }
+:-ms-input-placeholder { color: #888; }
+::placeholder { color: #888; }

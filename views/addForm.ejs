@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Poision</title>
 </head>
 <body>
-     <form action="/add_poison" method="post">
-        <input type="text" name="poisionName" id="poision" placeholder="enter poision name">
-        <input type="text" name="toxin_type" id="toxin" placeholder="enter toxin-type">
-     <select id="lethality_level" name="lethality_level">
-        <option value="" disabled selected>Select lethality level</option>
-         <option value="Deadly">Deadly</option>
-         <option value="High">High</option>
-         <option value="Medium">Medium</option>
-         <option value="Medium">Low</option>
-
-   </select>   
+    <form action="/add_poison" method="post" class="form-card">
+        <input type="text" name="poisionName" id="poision" placeholder="Enter poision name">
+        <input type="text" name="toxin_type" id="toxin" placeholder="Enter toxin-type">
+        <select id="lethality_level" name="lethality_level">
+            <option value="" disabled selected>Select lethality level</option>
+            <option value="Deadly">Deadly</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+        </select>   
+        <div class="checkbox-group">
         <% symptoms.forEach(symptom =>{ %>
-            <input type="checkbox" name="symptom" id="symptom_input" value="<%=symptom.symptom_id%>">
-                  <%=symptom.symptom_name%>
-
+            <label>
+                <input type="checkbox" name="symptom" id="symptom_input" value="<%=symptom.symptom_id%>">
+                <%=symptom.symptom_name%>
+            </label>
         <% }) %>    
-   
-   
-<button type="submit">Add Poision</button>
+        </div>
+        <button type="submit">Add Poision</button>
     </form>
-
 </body>
 </html>

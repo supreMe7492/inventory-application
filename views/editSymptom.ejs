@@ -2,16 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit Symptoms</title>
 </head>
 <body>
-    <a href="/add_symptom">Add new symptom</a>
+    <a href="/add_symptom" class="nav-btn">Add new symptom</a>
+    <section>
     <% symptoms.forEach(symptom => {%>
-        <p><%=symptom.symptom_name%></p>
-        <form action="/edit_symptom/delete_symptom/<%=symptom.symptom_id%>" method="post">
-            <button type="submit">X</button>
-        </form>
+        <div class="symptom-row">
+            <span><%=symptom.symptom_name%></span>
+            <form action="/edit_symptom/delete_symptom/<%=symptom.symptom_id%>" method="post">
+                <button type="submit" class="delete-btn">X</button>
+            </form>
+        </div>
     <%})%>  
+    </section>
 </body>
 </html>

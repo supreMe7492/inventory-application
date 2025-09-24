@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add Symptom</title>
 </head>
 <body>
-    <form action="/add_symptom" method="post">
-        <input type="text" name="symptom_name" id="symptom_name" placeholder="Enter symtpm name" required>
+    <form action="/add_symptom" method="post" class="form-card">
+        <input type="text" name="symptom_name" id="symptom_name" placeholder="Enter symptom name" required>
         <button type="submit">Add</button>
     </form>
 </body>

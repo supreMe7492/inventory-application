@@ -2,29 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/styles/dark.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Edit Poision</title>
 </head>
 <body>
-    <form action="/edit/<%=poision.poision_id%>" method="post">
+    <form action="/edit/<%=poision.poision_id%>" method="post" class="form-card">
         <input type="text" name="poisionName" id="poision" value="<%=poision.poisionName%>">
         <input type="text" name="toxin_type" id="toxin" value="<%=poision.toxin_type%>">
-     <select id="lethality_level" name="lethality_level">
-         <option value="Deadly" <%= poision.lethality_level === "Deadly" ? "selected" : "" %>>Deadly</option>
-         <option value="High" <%= poision.lethality_level === "High" ? "selected" : "" %>>High</option>
-         <option value="Medium" <%= poision.lethality_level === "Medium" ? "selected" : "" %>>Medium</option>
-         <option value="Medium" <%= poision.lethality_level === "Low" ? "selected" : "" %>>Low</option>
-
-   </select>   
+        <select id="lethality_level" name="lethality_level">
+            <option value="Deadly" <%= poision.lethality_level === "Deadly" ? "selected" : "" %>>Deadly</option>
+            <option value="High" <%= poision.lethality_level === "High" ? "selected" : "" %>>High</option>
+            <option value="Medium" <%= poision.lethality_level === "Medium" ? "selected" : "" %>>Medium</option>
+            <option value="Low" <%= poision.lethality_level === "Low" ? "selected" : "" %>>Low</option>
+        </select>   
+        <div class="checkbox-group">
         <% symptoms.forEach(symptom =>{ %>
-            <input type="checkbox" name="symptom" id="symptom_input" value="<%=symptom.symptom_id%>" <%= poision.symptoms.map(s=>s.symptom_name).includes(symptom.symptom_name) ? "checked" : "" %>>
-                  <%=symptom.symptom_name%>
-
+            <label>
+                <input type="checkbox" name="symptom" id="symptom_input" value="<%=symptom.symptom_id%>" <%= poision.symptoms.map(s=>s.symptom_name).includes(symptom.symptom_name) ? "checked" : "" %>>
+                <%=symptom.symptom_name%>
+            </label>
         <% }) %>    
-   
-   
-<button type="submit">Save Changes</button>
+        </div>
+        <button type="submit">Save Changes</button>
     </form>
-
 </body>
 </html>
