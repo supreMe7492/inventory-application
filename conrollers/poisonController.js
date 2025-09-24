@@ -1,4 +1,4 @@
-const {allPoisions,updatePoisionDetail,getPoisionDetail,allSymptoms,addPoision} = require("../db/queries");
+const {allPoisions,updatePoisionDetail,getPoisionDetail,allSymptoms,addPoision,deletePoision} = require("../db/queries");
 
 async function renderAllPoision(req,res){
     const poisons = await allPoisions();
@@ -44,4 +44,10 @@ async function addNewPoision(req,res){
        res.send(err.message)
     }
 }
-module.exports = {renderAllPoision,updateDetail,renderEditForm,addPoisionForm,addNewPoision}
+
+async function removePoision(req,res){
+    await deletePoision(req.params.poision_id);
+    res.redirect('/')
+}
+
+module.exports = {renderAllPoision,updateDetail,renderEditForm,addPoisionForm,addNewPoision,removePoision}

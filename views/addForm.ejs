@@ -7,9 +7,10 @@
 </head>
 <body>
      <form action="/add_poison" method="post">
-        <input type="text" name="poisionName" id="poision">
-        <input type="text" name="toxin_type" id="toxin">
+        <input type="text" name="poisionName" id="poision" placeholder="enter poision name">
+        <input type="text" name="toxin_type" id="toxin" placeholder="enter toxin-type">
      <select id="lethality_level" name="lethality_level">
+        <option value="" disabled selected>Select lethality level</option>
          <option value="Deadly">Deadly</option>
          <option value="High">High</option>
          <option value="Medium">Medium</option>

@@ -16,7 +16,9 @@
     <p><strong>Lethality Level:</strong> <%= poision.lethality_level %></p>
     <p><strong>Symptoms:</strong> <%= poision.symptoms.map(s => s.symptom_name).join(', ') %></p>    
     <a href="/edit/<%=poision.poision_id%>" class="edit-btn">Edit</a>
-    <button class="delete-btn">Delete</button>
+    <form action="/delete/<%=poision.poision_id%>"method="post">
+          <button type="submit" class="delete-btn">Delete</button>
+        </form>
   </div>
 <% }) %>
 </body>

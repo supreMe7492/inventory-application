@@ -102,4 +102,9 @@ async function addPoision(poision_name,toxin_type,lethality_level,symptom_ids){
  symptom_ids = normalizeSymptomId(symptom_ids);
  await addPoisionSymptoms(poision_id,symptom_ids);
 }
- module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail, allSymptoms,addPoision}  
+
+async function deletePoision(poision_id){
+  await pool.query(`DELETE FROM poisions WHERE poision_id = $1`,[poision_id]);
+  await pool.query(`DELETE FROM poision_symptoms WHERE poision_id = $1`, [poision_id]);
+}
+ module.exports = {allPoisions,getPoisionDetail,updatePoisionDetail, allSymptoms,addPoision,deletePoision};  
