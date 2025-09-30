@@ -8,9 +8,9 @@
 </head>
 <body>
     <form action="/add_poison" method="post" class="form-card">
-        <input type="text" name="poisionName" id="poision" placeholder="Enter poision name">
-        <input type="text" name="toxin_type" id="toxin" placeholder="Enter toxin-type">
-        <select id="lethality_level" name="lethality_level">
+        <input type="text" name="poisionName" id="poision" placeholder="Enter poision name" required>
+        <input type="text" name="toxin_type" id="toxin" placeholder="Enter toxin-type" required>
+        <select id="lethality_level" name="lethality_level" required>
             <option value="" disabled selected>Select lethality level</option>
             <option value="Deadly">Deadly</option>
             <option value="High">High</option>

@@ -8,8 +8,8 @@
 </head>
 <body>
     <form action="/edit/<%=poision.poision_id%>" method="post" class="form-card">
-        <input type="text" name="poisionName" id="poision" value="<%=poision.poisionName%>">
-        <input type="text" name="toxin_type" id="toxin" value="<%=poision.toxin_type%>">
+        <input type="text" name="poisionName" id="poision" value="<%=poision.poisionName%>" required>
+        <input type="text" name="toxin_type" id="toxin" value="<%=poision.toxin_type%>" required>
         <select id="lethality_level" name="lethality_level">
             <option value="Deadly" <%= poision.lethality_level === "Deadly" ? "selected" : "" %>>Deadly</option>
             <option value="High" <%= poision.lethality_level === "High" ? "selected" : "" %>>High</option>

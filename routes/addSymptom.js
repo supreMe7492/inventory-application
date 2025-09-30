@@ -1,6 +1,6 @@
 const {Router} = require('express');
-const {newSymptomForm,addNewSymptom} = require('../conrollers/poisonController');
+const {newSymptomForm,addNewSymptom,symptomValidation,handleValidationErrors} = require('../conrollers/poisonController');
 const addSymptom = Router();
 addSymptom.get('/',newSymptomForm);
-addSymptom.post('/',addNewSymptom);
+addSymptom.post('/',symptomValidation,handleValidationErrors,addNewSymptom);
 module.exports = addSymptom;

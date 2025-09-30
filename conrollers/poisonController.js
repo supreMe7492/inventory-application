@@ -1,4 +1,25 @@
 const {allPoisions,updatePoisionDetail,getPoisionDetail,allSymptoms,addPoision,deletePoision,deleteSymptom,addSymptom} = require("../db/queries");
+const {body,validationResult} = require('express-validator');
+
+
+function handleValidationErrors(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+}
+
+const poisionValidation = [
+     body('poisionName').notEmpty().trim().withMessage('required name of poision'),
+     body('toxin_type').notEmpty().trim().withMessage('add toxin type'),
+     body('lethality_level').notEmpty().withMessage('select one level of lethality')
+
+]
+
+const symptomValidation = [
+    body('symptom_name').notEmpty().trim().withMessage('atleast write the name of symptom')
+]
 
 async function renderAllPoision(req,res){
     const poisons = await allPoisions();
@@ -72,4 +93,4 @@ async function addNewSymptom(req,res){
     }
 }
 
-module.exports = {renderAllPoision,updateDetail,renderEditForm,addPoisionForm,addNewPoision,removePoision,renderSymptoms,removeSymptom,newSymptomForm,addNewSymptom}
+module.exports = {renderAllPoision,updateDetail,renderEditForm,addPoisionForm,addNewPoision,removePoision,renderSymptoms,removeSymptom,newSymptomForm,addNewSymptom,handleValidationErrors,poisionValidation,symptomValidation}
